@@ -75,7 +75,7 @@ jobs:
 
     - name: 设置环境变量到 Azure WebApp
       run: |
-        az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group <your-resource-group> --settings \
+        az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group shop --settings \
           AUTH_SECRET=${{ secrets.AUTH_SECRET }} \
           AUTH_GITHUB_SECRET=${{ secrets.AUTH_GITHUB_SECRET }} \
           AUTH_GITHUB_ID=${{ secrets.AUTH_GITHUB_ID }} \
