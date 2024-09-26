@@ -40,10 +40,10 @@ jobs:
         AUTH_RESEND_KEY: ${{ secrets.AUTH_RESEND_KEY }}
         AUTH_URL: ${{ secrets.AUTH_URL }}
         EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DATABASE_URL: ${{ secrets.DATABASE_URL }} 
         NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
       run: |
-        echo "环境变量已设置"
+        echo "环境变量已设置。"
 
     - name: 构建项目
       run: pnpm run build
