@@ -6,7 +6,7 @@ on:
 env:
   AZURE_WEBAPP_NAME: keyb's-shop    # 设置为你的应用程序名称
   AZURE_WEBAPP_PACKAGE_PATH: '.'    # 设置为你的Web应用项目路径，默认为仓库根目录
-  NODE_VERSION: '22.9.0'              # 设置为要使用的Node.js版本
+  NODE_VERSION: '22.9.0'            # 设置为要使用的Node.js版本
 
 permissions:
   contents: read
@@ -23,10 +23,11 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'pnpm'
 
-    - name: 启用并准备 pnpm
-      run: |
-        corepack enable
-        corepack prepare pnpm@latest --activate
+    - name: 安装 pnpm
+      run: npm install -g pnpm
+
+    - name: 验证 pnpm 是否可用
+      run: pnpm --version
 
     - name: 安装依赖并生成锁定文件
       run: pnpm install
