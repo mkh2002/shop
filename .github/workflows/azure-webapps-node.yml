@@ -7,14 +7,6 @@ env:
   AZURE_WEBAPP_NAME: keyb's-shop    # 设置为你的应用程序名称
   AZURE_WEBAPP_PACKAGE_PATH: '.'    # 设置为你的Web应用项目路径，默认为仓库根目录
   NODE_VERSION: '22.9.0'            # 设置为要使用的Node.js版本
-  DATABASE_URL: ${{production.DATABASE_URL}
-  AUTH_SECRET: ${{production.AUTH_SECRET}
-  AUTH_GITHUB_SECRET: ${{production.AUTH_GITHUB_SECRET}
-  AUTH_GITHUB_ID: ${{production.AUTH_GITHUB_ID}
-  AUTH_RESEND_KEY: ${{production.AUTH_RESEND_KEY}
-  AUTH_URL: ${{production.AUTH_URL}
-  EMAIL_FROM: ${{production.EMAIL_FROM}
-  NEXT_PUBLIC_API_URL: ${{production.NEXT_PUBLIC_API_URL} #
 
 permissions:
   contents: read
@@ -43,7 +35,15 @@ jobs:
       run: |
         pnpm run build 
         pnpm run start
-      env: DATABASE_URL: 
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+        AUTH_GITHUB_SECRET: ${{ secrets.AUTH_GITHUB_SECRET }}
+        AUTH_GITHUB_ID: ${{ secrets.AUTH_GITHUB_ID }}
+        AUTH_RESEND_KEY: ${{ secrets.AUTH_RESEND_KEY }}
+        AUTH_URL: ${{ secrets.AUTH_URL }}
+        EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+        NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
 
     - name: 上传构建工件
       uses: actions/upload-artifact@v3
