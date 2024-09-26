@@ -23,9 +23,9 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: keyb's-shop    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '20.x'                # set this to the node version to use
+  AZURE_WEBAPP_NAME: keyb's-shop    # Set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # Set this to the path to your web app project, defaults to the repository root
+  NODE_VERSION: '20.x'                # Set this to the Node.js version to use
 
 permissions:
   contents: read
@@ -42,14 +42,11 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'pnpm'
 
-    - name: Install pnpm via corepack
-      run: |
-        corepack enable
-        corepack prepare pnpm@latest --activate
+    - name: Install pnpm globally
+      run: npm install -g pnpm
 
     - name: Install dependencies using pnpm
-      run: |
-        pnpm install
+      run: pnpm install
 
     - name: Build project
       run: |
