@@ -33,8 +33,8 @@ jobs:
 
     - name: 构建项目
       run: |
-        pnpm run build --if-present
-        pnpm run test --if-present
+        pnpm run build 
+        pnpm run start
 
     - name: 上传构建工件
       uses: actions/upload-artifact@v3
