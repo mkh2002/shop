@@ -32,21 +32,17 @@ jobs:
     - name: 安装依赖并生成锁定文件
       run: pnpm install
 
-    - name: 设置环境变量
-      env:
-        AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
-        AUTH_GITHUB_SECRET: ${{ secrets.AUTH_GITHUB_SECRET }}
-        AUTH_GITHUB_ID: ${{ secrets.AUTH_GITHUB_ID }}
-        AUTH_RESEND_KEY: ${{ secrets.AUTH_RESEND_KEY }}
-        AUTH_URL: ${{ secrets.AUTH_URL }}
-        EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-        DATABASE_URL: ${{ secrets.DATABASE_URL }} 
-        NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-      run: |
-        echo "环境变量已设置。"
-
     - name: 构建项目
       run: pnpm run build
+      env:
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+          AUTH_GITHUB_SECRET: ${{ secrets.AUTH_GITHUB_SECRET }}
+          AUTH_GITHUB_ID: ${{ secrets.AUTH_GITHUB_ID }}
+          AUTH_RESEND_KEY: ${{ secrets.AUTH_RESEND_KEY }}
+          AUTH_URL: ${{ secrets.AUTH_URL }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }} 
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
 
     - name: 上传构建工件
       uses: actions/upload-artifact@v3
