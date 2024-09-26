@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: keyb's-shop    # 设置为你的应用程序名称
-  AZURE_WEBAPP_PACKAGE_PATH: '.'    # 设置为你的Web应用项目路径，默认为仓库根目录
-  NODE_VERSION: '22.9.0'            # 设置为要使用的Node.js版本
+  AZURE_WEBAPP_NAME: keyb's-shop
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
+  NODE_VERSION: '22.9.0'
 
 permissions:
   contents: read
@@ -65,3 +65,14 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+    - name: 设置环境变量
+      run: |
+        echo AUTH_SECRET=${{ secrets.AUTH_SECRET }} >> $GITHUB_ENV
+        echo AUTH_GITHUB_SECRET=${{ secrets.AUTH_GITHUB_SECRET }} >> $GITHUB_ENV
+        echo AUTH_GITHUB_ID=${{ secrets.AUTH_GITHUB_ID }} >> $GITHUB_ENV
+        echo AUTH_RESEND_KEY=${{ secrets.AUTH_RESEND_KEY }} >> $GITHUB_ENV
+        echo AUTH_URL=${{ secrets.AUTH_URL }} >> $GITHUB_ENV
+        echo EMAIL_FROM=${{ secrets.EMAIL_FROM }} >> $GITHUB_ENV
+        echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> $GITHUB_ENV
+        echo NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} >> $GITHUB_ENV
