@@ -23,9 +23,9 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: key's-shop    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '20.x'                # set this to the node version to use
+  AZURE_WEBAPP_NAME: keyb's-shop    # 设置为你的应用程序名称
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # 设置为你的Web应用项目路径，默认为仓库根目录
+  NODE_VERSION: '20.x'                # 设置为要使用的Node.js版本
 
 permissions:
   contents: read
@@ -36,19 +36,24 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up Node.js
+    - name: 设置 Node.js 版本
       uses: actions/setup-node@v4
       with:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
 
-    - name: npm install, build, and test
-      run: |
-        npm install
-        npm run build --if-present
-        npm run test --if-present
+    - name: 全局安装 pnpm
+      run: npm install -g pnpm
 
-    - name: Upload artifact for deployment job
+    - name: 使用 pnpm 安装依赖
+      run: pnpm install
+
+    - name: 构建项目
+      run: |
+        pnpm run build --if-present
+        pnpm run test --if-present
+
+    - name: 上传构建工件
       uses: actions/upload-artifact@v3
       with:
         name: node-app
@@ -64,12 +69,12 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-    - name: Download artifact from build job
+    - name: 下载构建工件
       uses: actions/download-artifact@v3
       with:
         name: node-app
 
-    - name: 'Deploy to Azure WebApp'
+    - name: 部署到 Azure WebApp
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
