@@ -40,13 +40,13 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
+        cache: 'pnpm'
 
-    - name: 全局安装 pnpm
+    - name: 安装 pnpm
       run: npm install -g pnpm
-
-    - name: 使用 pnpm 安装依赖
-      run: pnpm install
+    - name: 安装依赖并生成锁定文件
+      run: |
+        pnpm install
 
     - name: 构建项目
       run: |
