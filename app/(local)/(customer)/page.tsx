@@ -11,7 +11,7 @@ const Home = async () => {
   const product = await getTopProducts();
 
   return (
-    <div className="relative space-y-8 px-4 py-20 md:px-12 lg:px-14">
+    <div className="relative space-y-8 px-4 pb-20 pt-10 md:px-12 lg:px-14">
       <Hero />
       <HeroCategory category={category} />
       <HeroProduct product={product} />

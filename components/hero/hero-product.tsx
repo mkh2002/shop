@@ -20,7 +20,7 @@ export default function HeroProduct({ product }: Props) {
             <Image
               priority
               alt={item.name}
-              className="w-full rounded-xl"
+              className="size-full rounded-xl"
               height={200}
               sizes="auto"
               src={item.image as string}
