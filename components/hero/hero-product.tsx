@@ -29,7 +29,7 @@ export default function HeroProduct({ product }: Props) {
             <Link
               className={cn(
                 buttonVariants({ variant: "ghost" }),
-                "w-full hover:bg-foreground hover:text-muted rounded-none",
+                "w-full hover:bg-foreground hover:text-muted rounded-none text-xs truncate",
               )}
               href={`/category/${item.name}`}
             >
