@@ -1,13 +1,22 @@
 import React from "react";
 
+import HeroCategory from "@/components/hero/hero-category";
+import { getAllCategory } from "@/app/acitons/category";
 import Hero from "@/components/hero/hero";
+import { getTopProducts } from "@/app/acitons/product";
+import HeroProduct from "@/components/hero/hero-product";
 
-const Page = () => {
+const Home = async () => {
+  const category = await getAllCategory();
+  const product = await getTopProducts();
+
   return (
-    <div className="relative flex flex-1 px-4 pt-5 md:px-12 lg:px-14">
+    <div className="relative space-y-8 px-4 py-20 md:px-12 lg:px-14">
       <Hero />
+      <HeroCategory category={category} />
+      <HeroProduct product={product} />
     </div>
   );
 };
 
-export default Page;
+export default Home;

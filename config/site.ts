@@ -79,18 +79,18 @@ export const site = [
     icon: PiHouse,
   },
   {
-    label: "Men's",
-    href: "/mens",
+    label: "Collection",
+    href: "/collection",
     icon: PiCowboyHatLight,
   },
   {
-    label: "Women's",
-    href: "/women's",
+    label: "Category",
+    href: "/category",
     icon: PiDress,
   },
   {
-    label: "Kids",
-    href: "/kids",
+    label: "Contact",
+    href: "/contact",
     icon: PiBaby,
   },
 ];

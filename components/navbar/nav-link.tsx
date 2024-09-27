@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { RxDotFilled } from "react-icons/rx";
 
 import { cn } from "@/lib/utils";
 
@@ -10,13 +11,14 @@ const NavLink = ({ href, name }: { href: string; name: string }) => {
   return (
     <Link
       className={cn(
-        "px-6 py-2 text-sm rounded-full",
+        "px-6 flex gap-2 items-center py-2 text-sm rounded-full text-muted-foreground",
         pathname === href
-          ? "bg-foreground text-background hover:opacity-90"
+          ? "bg-background text-foreground hover:opacity-90 pl-4 pr-6"
           : "hover:bg-muted",
       )}
       href={"/"}
     >
+      <RxDotFilled className={cn(pathname === href ? "block" : "hidden")} />
       {name}
     </Link>
   );

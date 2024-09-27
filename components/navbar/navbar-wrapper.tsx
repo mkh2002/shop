@@ -4,6 +4,7 @@ import { RxExit, RxFrame } from "react-icons/rx";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { LuShoppingBag } from "react-icons/lu";
+import { motion } from "framer-motion";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
@@ -14,17 +15,25 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { site } from "@/config/site";
-import NavLink from "@/components/navbar/nav-link";
+
+import NAvLinkGroup from "./nav-link-group";
 
 const NavbarWrapper = () => {
   const session = useSession();
 
   return (
-    <div
+    <motion.div
+      animate={{
+        opacity: 1,
+        translateY: 0,
+      }}
       className={
-        "flex w-full items-center justify-between bg-background p-4 lg:px-8"
+        "relative flex w-full  items-center justify-between bg-background p-4 lg:px-8"
       }
+      initial={{
+        opacity: 0,
+        translateY: -100,
+      }}
     >
       <Link className={"flex space-x-2 "} href={"/"}>
         <RxFrame className={"size-5"} strokeWidth={0.7} />
@@ -33,15 +42,7 @@ const NavbarWrapper = () => {
         </span>
       </Link>
 
-      <div
-        className={
-          "hidden items-center justify-center space-x-4 rounded-full border bg-muted/30 px-4 py-1 md:flex"
-        }
-      >
-        {site.map((item) => (
-          <NavLink key={item.label} href={item.href} name={item.label} />
-        ))}
-      </div>
+      <NAvLinkGroup />
 
       <div className={"flex items-center space-x-4"}>
         <Button
@@ -89,7 +90,7 @@ const NavbarWrapper = () => {
           </Link>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

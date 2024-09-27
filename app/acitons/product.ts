@@ -66,3 +66,16 @@ export const getAllProducts = async () => {
 
   return data;
 };
+
+export const getTopProducts = async () => {
+  const data = await db.product.findMany({
+    include: {
+      category: true,
+    },
+    take: 8,
+  });
+
+  revalidatePath("/");
+
+  return data;
+};

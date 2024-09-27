@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import { RxArrowBottomRight, RxArrowTopRight } from "react-icons/rx";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <motion.div
+    <motion.section
       animate={{ opacity: 1, translateY: 0 }}
-      className="relative flex-1 overflow-hidden rounded-xl bg-red-300 md:aspect-[16/8.5]"
+      className="relative min-h-[calc(100dvh-6rem)] overflow-hidden rounded-xl md:min-h-[calc(100dvh-10rem)]"
       initial={{ opacity: 0, translateY: 100 }}
     >
       <Image
@@ -17,7 +17,7 @@ export default function Hero() {
         priority
         alt="hero"
         className="rounded-xl object-cover"
-        sizes="auto"
+        sizes="100vw"
         src={"/hero.webp"}
       />
       <div className="absolute flex size-full flex-col justify-center gap-4 bg-gray-500/30 px-10 py-20 md:p-10">
@@ -52,6 +52,6 @@ export default function Hero() {
           </Link>
         </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 }

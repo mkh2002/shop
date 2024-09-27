@@ -15,7 +15,7 @@ export default function Footer() {
   return (
     <motion.div
       animate={{ opacity: 1, translateY: 0 }}
-      className="fixed bottom-0 w-full p-5 md:hidden"
+      className="fixed bottom-0 w-full p-9 md:hidden"
       initial={{ opacity: 0, translateY: 100 }}
       transition={{ duration: 0.3 }}
     >
