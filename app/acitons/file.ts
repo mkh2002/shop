@@ -2,6 +2,8 @@
 import path from "node:path";
 import * as fs from "node:fs";
 
+import { revalidatePath } from "next/cache";
+
 export const uploadFile = async (formData: FormData) => {
   const file = formData.get("file") as File | null;
   const filename = formData.get("filename") as string;
@@ -33,5 +35,7 @@ export const uploadFile = async (formData: FormData) => {
     };
   } catch (e: any) {
     return { message: "Error uploading file", error: e.message, status: false };
+  } finally {
+    revalidatePath("/");
   }
 };

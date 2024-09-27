@@ -1,7 +1,7 @@
 import React from "react";
 
-import NavbarWrapper from "@/components/navbar/navbar-wrapper";
 import Footer from "@/components/footer/footer-wapper";
+import NavbarWrapper from "@/components/navbar/navbar-wrapper";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

@@ -19,7 +19,7 @@ export default function Footer() {
       initial={{ opacity: 0, translateY: 100 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="flex w-full justify-between rounded-full border px-8 py-2">
+      <div className="flex w-full justify-between rounded-full border bg-background px-8 py-2">
         {site.map((item) => (
           <Link
             key={item.label}

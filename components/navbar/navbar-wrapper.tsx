@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { RxExit, RxFrame } from "react-icons/rx";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { LuShoppingBag } from "react-icons/lu";
@@ -22,13 +21,10 @@ const NavbarWrapper = () => {
   const session = useSession();
 
   return (
-    <motion.div
-      animate={{ opacity: 1, translateY: 0 }}
+    <div
       className={
         "flex w-full items-center justify-between bg-background p-4 lg:px-8"
       }
-      initial={{ opacity: 0, translateY: -100 }}
-      transition={{ duration: 0.3 }}
     >
       <Link className={"flex space-x-2 "} href={"/"}>
         <RxFrame className={"size-5"} strokeWidth={0.7} />
@@ -93,7 +89,7 @@ const NavbarWrapper = () => {
           </Link>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

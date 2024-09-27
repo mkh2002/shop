@@ -1,0 +1,8 @@
+{
+  "appService.defaultWebAppToDeploy": "undefined/subscriptions/22782394-2908-44c0-aa60-1200380f94c5/resourceGroups/shop/providers/Microsoft.Web/sites/next-shop",
+  "appService.deploySubpath": ".",
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}"
+  ]
+}

@@ -1,4 +1,7 @@
 "use server";
+
+import { revalidatePath } from "next/cache";
+
 import { AddCategoryType } from "@/config/definetions";
 import { db } from "@/prisma/db";
 
@@ -15,6 +18,8 @@ const getCategoryById = async (id: string) => {
     },
   });
 
+  revalidatePath("/");
+
   return data;
 };
 
@@ -27,6 +32,8 @@ const createCategory = async (data: AddCategoryType) => {
     return { status: true, message: "Category created successfully" };
   } catch (error: any) {
     return { status: false, message: error.message };
+  } finally {
+    revalidatePath("/");
   }
 };
 
@@ -42,6 +49,8 @@ const updateCategory = async (id: string, data: AddCategoryType) => {
     return { status: true, message: "Category updated successfully" };
   } catch (error: any) {
     throw error;
+  } finally {
+    revalidatePath("/");
   }
 };
 
@@ -56,6 +65,8 @@ const deleteCategory = async (id: string) => {
     return { status: true, message: "Category deleted successfully" };
   } catch (error: any) {
     throw error;
+  } finally {
+    revalidatePath("/");
   }
 };
 

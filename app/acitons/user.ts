@@ -1,4 +1,6 @@
 "use server";
+import { revalidatePath } from "next/cache";
+
 import { db } from "@/prisma/db";
 import { UserSchemaType } from "@/config/definetions";
 
@@ -17,6 +19,8 @@ const deleteUser = async (id: string) => {
     return { message: "Delete user success", status: false };
   } catch (e: any) {
     return { e, status: false };
+  } finally {
+    revalidatePath("/");
   }
 };
 
@@ -31,11 +35,13 @@ const addUser = async (data: addUserSchemaType) => {
     await db.user.create({
       data: data,
     });
+
+    return { message: "Create user success", status: 201 };
   } catch (e: any) {
     throw e;
+  } finally {
+    revalidatePath("/");
   }
-
-  return { message: "Create user success", status: 201 };
 };
 
 const getUser = async (id: string) => {
@@ -49,6 +55,8 @@ const getUser = async (id: string) => {
     return { data: user, status: true };
   } catch (e: any) {
     return { message: e, status: false };
+  } finally {
+    revalidatePath("/");
   }
 };
 
@@ -70,11 +78,15 @@ const updateUser = async (data: UserSchemaType) => {
     return { message: "Update user success", status: true };
   } catch (e: any) {
     return { message: e, status: false };
+  } finally {
+    revalidatePath("/");
   }
 };
 
 const getAllUsers = async () => {
   const data = await db.user.findMany();
+
+  revalidatePath("/");
 
   return data;
 };

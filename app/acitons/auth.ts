@@ -1,5 +1,6 @@
 "use server";
 import bcrypt from "bcryptjs";
+import { revalidatePath } from "next/cache";
 
 import { db } from "@/prisma/db";
 import { RegisterSchemaType } from "@/config/definetions";
@@ -10,6 +11,8 @@ export const checkUserExistByEmail = async (email: string) => {
       email,
     },
   });
+
+  revalidatePath("/");
 
   return user;
 };
@@ -38,6 +41,8 @@ export const signUp = async (value: RegisterSchemaType) => {
   } catch (e: any) {
     return { e, status: 400 };
   } finally {
+    revalidatePath("/");
+
     db.$disconnect();
   }
 };

@@ -1,4 +1,6 @@
 "use server";
+import { revalidatePath } from "next/cache";
+
 import { db } from "@/prisma/db";
 import { ProductType } from "@/config/definetions";
 
@@ -12,6 +14,8 @@ export const createProduct = async (data: ProductTypeWithoutCategory) => {
     return { status: true, message: "Product created successfully" };
   } catch (e: any) {
     throw e;
+  } finally {
+    revalidatePath("/");
   }
 };
 
@@ -26,6 +30,8 @@ export const deleteProductById = async (id: string) => {
     return { status: true, message: "Product deleted successfully" };
   } catch (e: any) {
     throw e;
+  } finally {
+    revalidatePath("/");
   }
 };
 
@@ -44,6 +50,8 @@ export const updateProduct = async (
     return { status: true, message: "Product updated successfully" };
   } catch (e: any) {
     throw e;
+  } finally {
+    revalidatePath("/");
   }
 };
 
@@ -53,6 +61,8 @@ export const getAllProducts = async () => {
       category: true,
     },
   });
+
+  revalidatePath("/");
 
   return data;
 };
