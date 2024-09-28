@@ -1,6 +1,8 @@
 "use server";
 import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
+import { signIn } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 import { db } from "@/prisma/db";
 import { RegisterSchemaType } from "@/config/definetions";
@@ -36,6 +38,9 @@ export const signUp = async (value: RegisterSchemaType) => {
         password: hashedPassword,
       },
     });
+
+    await signIn("credentials", { email, password });
+    redirect("/");
 
     return { message: "User created", status: 200 };
   } catch (e: any) {

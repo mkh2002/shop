@@ -1,9 +1,6 @@
-import NextAuth from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
-import authConfig from "@/config/auth.config";
-
-const { auth } = NextAuth(authConfig);
+import { auth } from "./config/auth";
 
 const publicRoutes = ["/login", "/register"];
 const protectedRoutes = ["/admin"];
@@ -17,10 +14,16 @@ export default async function middleware(req: NextRequest) {
   );
   const isPublicRoute = publicRoutes.some((route) => path.startsWith(route));
 
-  if (isProtectedRoute && !session) {
-    return NextResponse.redirect(new URL("/login", req.nextUrl));
+  if (isProtectedRoute && session?.user.role !== "ADMIN") {
+    return NextResponse.redirect(
+      new URL(`/redirect?role=${session?.user.role}`, req.nextUrl),
+    );
   }
-  if (isPublicRoute && session && !req.nextUrl.pathname.startsWith("/admin")) {
+  if (
+    isPublicRoute &&
+    session?.user.role === "ADMIN" &&
+    !req.nextUrl.pathname.startsWith("/admin")
+  ) {
     return NextResponse.redirect(new URL("/admin/dashboard", req.nextUrl));
   }
 

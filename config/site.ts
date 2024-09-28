@@ -84,8 +84,8 @@ export const site = [
     icon: PiCowboyHatLight,
   },
   {
-    label: "Category",
-    href: "/category",
+    label: "Product",
+    href: "/product",
     icon: PiDress,
   },
   {

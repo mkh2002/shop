@@ -33,6 +33,7 @@ const providers: Provider[] = [
         name: profile.login,
         image: profile.avatar_url,
         email: profile.email,
+        role: "USER",
       };
     },
   }),
@@ -44,25 +45,34 @@ const providers: Provider[] = [
       email: { label: "Email", type: "email" },
       password: { label: "Password", type: "password" },
     },
-    async authorize(credentials: any) {
+    async authorize(credentials) {
       try {
+        const { email, password } = credentials as {
+          email: string;
+          password: string;
+        };
+
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("缺少邮箱或密码");
+        }
+
         const user = await db.user.findUnique({
           where: {
-            email: credentials.email,
+            email: email,
           },
         });
 
         if (!user) {
-          return new Error("邮箱未注册");
+          throw new Error("邮箱未注册");
         }
 
         const isPasswordValid = await bcrypt.compare(
-          credentials.password,
+          password,
           String(user.password),
         );
 
         if (!isPasswordValid) {
-          return new Error("密码错误");
+          throw new Error("密码错误");
         }
 
         return user;
@@ -84,12 +94,23 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        const userId = token.sub as string;
+        token.sub = user.id;
+        token.role = user.role;
+      } else if (!token.role) {
+        const role = await getUserRole(token.sub as string);
 
-        token.role = getUserRole(userId);
+        token.role = role || "USER";
       }
 
       return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.sub as string;
+        session.user.role = token.role as string;
+      }
+
+      return session;
     },
   },
   events: {

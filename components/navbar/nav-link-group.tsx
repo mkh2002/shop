@@ -13,7 +13,7 @@ import NavLink from "./nav-link";
 
 export default function NAvLinkGroup() {
   const { scrollYProgress } = useScroll();
-  const [isVisble, setIsVisible] = React.useState(false);
+  const [isVisble, setIsVisible] = React.useState(true);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     if (typeof current === "number") {
@@ -35,7 +35,7 @@ export default function NAvLinkGroup() {
           y: isVisble ? 0 : -100,
         }}
         className={
-          "fixed left-1/2 z-[250] hidden items-center justify-center space-x-4 rounded-full bg-muted px-2 py-1 md:flex"
+          "fixed left-1/2 z-[250] hidden items-center justify-center space-x-4 rounded-full bg-muted/40 px-2 py-1 backdrop-blur-lg md:flex"
         }
         initial={{
           opacity: 1,

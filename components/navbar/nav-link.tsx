@@ -14,9 +14,9 @@ const NavLink = ({ href, name }: { href: string; name: string }) => {
         "px-6 flex gap-2 items-center py-2 text-sm rounded-full text-muted-foreground",
         pathname === href
           ? "bg-background text-foreground hover:opacity-90 pl-4 pr-6"
-          : "hover:bg-muted",
+          : "hover:bg-muted font-extralight",
       )}
-      href={"/"}
+      href={href}
     >
       <RxDotFilled className={cn(pathname === href ? "block" : "hidden")} />
       {name}

@@ -14,7 +14,7 @@ export const RegisterSchema = z.object({
 export type RegisterSchemaType = z.infer<typeof RegisterSchema>;
 
 export const LoginSchema = z.object({
-  email: z.string().email({ message: "错误的邮箱格式" }),
+  email: z.string().email({ message: "错误的邮箱˚格式" }),
   password: z.string(),
 });
 
@@ -34,7 +34,7 @@ export const UserSchema = z.object({
     })
     .optional()
     .nullable(),
-  emailVerified: z.date(),
+  emailVerified: z.date().optional().nullable(),
 });
 
 export type UserSchemaType = z.infer<typeof UserSchema>;
