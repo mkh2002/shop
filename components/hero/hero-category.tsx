@@ -11,7 +11,7 @@ export default function HeroCategory({ category }: Props) {
   return (
     <section className="space-y-3 px-2">
       <h3 className="tracking-wider">Shop By Category</h3>
-      <div className="flex gap-4">
+      <div className="flex gap-4  md:hidden">
         {category.map((item) => (
           <div key={item.id} className="flex flex-col">
             <Link className="space-y-1" href={`/category/${item.name}`}>
@@ -29,6 +29,13 @@ export default function HeroCategory({ category }: Props) {
           </div>
         ))}
         <div className="ml-auto" />
+
+        {/* {
+          category.map((item) => (
+            <div key={item.id}>
+              <
+            </div>
+          ))} */}
       </div>
     </section>
   );

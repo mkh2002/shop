@@ -24,8 +24,8 @@ export default function RdcPage() {
 
   return (
     <div className="flex h-dvh items-center justify-center gap-4 text-muted-foreground">
-      <LuFrown className="size-20" />
-      <h1 className="max-w-xl text-3xl">
+      <LuFrown className="size-10" />
+      <h1 className="max-w-xl text-lg">
         You are not authorized to access this page. Redirecting to home page in{" "}
         {countdown} seconds...
       </h1>

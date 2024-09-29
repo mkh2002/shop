@@ -4,14 +4,18 @@ import { RxDotFilled, RxFrame } from "react-icons/rx";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { adminSite } from "@/config/site";
 
+import LogoutButton from "../sidebar/logout-button";
+
 const Navbar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
+  const session = useSession();
 
   return (
     <div className={"md:hidden"}>
@@ -100,6 +104,23 @@ const Navbar = () => {
               </div>
             </div>
           ))}
+
+          <div className="space-y-4">
+            <p>Auth</p>
+            <div className="flex px-4">
+              <div className="text-muted-foreground">
+                <p className="text-sm">{session.data?.user.name}</p>
+                <p className="text-xs">{session.data?.user.email}</p>
+              </div>
+
+              <div className="ml-auto">
+                <LogoutButton
+                  className="size-10 text-muted-foreground"
+                  iconSize={16}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </motion.div>
     </div>
