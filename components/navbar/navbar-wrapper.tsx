@@ -28,7 +28,7 @@ const NavbarWrapper = () => {
         translateY: 0,
       }}
       className={
-        "relative flex w-full  items-center justify-between bg-background p-6 lg:px-8"
+        "relative flex w-full  items-center justify-between bg-background p-6 lg:px-8 lg:py-10"
       }
       initial={{
         opacity: 0,

@@ -7,7 +7,8 @@ import { buttonVariants } from "@/components/ui/button";
 import RegisterStep1Form from "@/components/auth/register-step-1-form";
 import RegisterStep2Form from "@/components/auth/register-step-2-form";
 
-const Register = ({ params }: { params: { step: string } }) => {
+const Register = async (props: { params: Promise<{ step: string }> }) => {
+  const params = await props.params;
   const step = parseInt(params.step);
   const email = decodeURIComponent(params.step[1]).split(" ").join();
 

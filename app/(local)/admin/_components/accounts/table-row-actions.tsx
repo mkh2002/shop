@@ -43,7 +43,7 @@ const TableRowActions = ({ row }: TableRowActionsProps) => {
 
       await addUser({
         password: password as string,
-        emailVerified: emailVerified.toISOString(),
+        emailVerified: emailVerified?.toISOString() as string,
         ...data,
       });
       router.refresh();

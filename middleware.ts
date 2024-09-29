@@ -7,7 +7,7 @@ const protectedRoutes = ["/admin"];
 
 export default async function middleware(req: NextRequest) {
   const session = await auth();
-  const path = req.nextUrl.pathname;
+  const path = (await req.nextUrl).pathname;
 
   const isProtectedRoute = protectedRoutes.some((route) =>
     path.startsWith(route),
@@ -16,15 +16,17 @@ export default async function middleware(req: NextRequest) {
 
   if (isProtectedRoute && session?.user.role !== "ADMIN") {
     return NextResponse.redirect(
-      new URL(`/redirect?role=${session?.user.role}`, req.nextUrl),
+      new URL(`/redirect?role=${session?.user.role}`, await req.nextUrl),
     );
   }
   if (
     isPublicRoute &&
     session?.user.role === "ADMIN" &&
-    !req.nextUrl.pathname.startsWith("/admin")
+    !(await req.nextUrl).pathname.startsWith("/admin")
   ) {
-    return NextResponse.redirect(new URL("/admin/dashboard", req.nextUrl));
+    return NextResponse.redirect(
+      new URL("/admin/dashboard", await req.nextUrl),
+    );
   }
 
   return NextResponse.next();

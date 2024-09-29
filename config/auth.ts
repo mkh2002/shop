@@ -1,10 +1,10 @@
 import type { Provider } from "next-auth/providers";
 
 import NextAuth from "next-auth";
-import { PrismaAdapter } from "@auth/prisma-adapter";
 import GitHub from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 import { db } from "@/prisma/db";
 
