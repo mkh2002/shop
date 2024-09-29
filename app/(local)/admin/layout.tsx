@@ -1,7 +1,6 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import { SidebarProvider } from "@/components/providers/sidebar-provider";
-import Loading from "@/app/(local)/loading";
 import Navbar from "@/app/(local)/admin/_components/navbar/navbar";
 import Sidebar from "@/app/(local)/admin/_components/sidebar/sidebar";
 import Header from "@/app/(local)/admin/_components/header";
@@ -25,9 +24,7 @@ export default function Layout({
           <header>
             <Header />
           </header>
-          <main className={"flex w-full flex-1"}>
-            <Suspense fallback={<Loading />}>{children}</Suspense>
-          </main>
+          <main className={"flex w-full flex-1"}>{children}</main>
         </section>
       </div>
     </div>
