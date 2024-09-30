@@ -1,51 +1,33 @@
+"use client";
 import React from "react";
-import Image from "next/image";
-import Link from "next/link"; // 确保 Link 导入
+import { motion } from "framer-motion";
 
-import { cn } from "@/lib/utils"; // 确保 cn 函数导入
-import { buttonVariants } from "@/components/ui/button"; // 确保 buttonVariants 导入
+import { cn } from "@/lib/utils";
 import { ProductType } from "@/config/definetions";
 
-import { Card, CardContent, CardFooter } from "../ui/card";
+import ProductCard from "./product-card";
 
-interface Props {
+interface HeroProductProps {
   product: ProductType[];
 }
 
-export default function HeroProduct({ product }: Props) {
+export default function HeroProduct({ product }: HeroProductProps) {
   return (
-    <section className="space-y-8 px-2">
-      <h3>Product for you</h3>
-      <div className="grid grid-cols-2 items-center justify-items-center gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {product.map((item) => (
-          <Card key={item.id}>
-            <CardContent>
-              <div key={item.id} className="flex flex-col">
-                <Image
-                  priority
-                  alt={item.name}
-                  className="size-full rounded-xl"
-                  height={200}
-                  sizes="auto"
-                  src={item.image as string}
-                  width={200}
-                />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Link
-                className={cn(
-                  buttonVariants({ variant: "ghost" }),
-                  "w-full hover:bg-foreground hover:text-muted rounded-none text-xs truncate",
-                )}
-                href={`/category/${item.name}`}
-              >
-                {item.name}
-              </Link>
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
-    </section>
+    <motion.section
+      animate={{ opacity: 1, translateY: 0 }}
+      className={cn("space-y-8 px-2")}
+      initial={{ opacity: 0, translateY: 100 }}
+      transition={{ delay: 0.5 }}
+    >
+      <h3 className="text-xl font-thin tracking-wider">Shop By Category</h3>
+      <motion.div>
+        <div className="flex size-full gap-10 overflow-x-auto whitespace-nowrap rounded-xl scrollbar-none">
+          <ProductCard className="min-w-[48rem] " product={product[0]} />
+          {product.slice(1, 4).map((item) => (
+            <ProductCard key={item.id} product={item} />
+          ))}
+        </div>
+      </motion.div>
+    </motion.section>
   );
 }
