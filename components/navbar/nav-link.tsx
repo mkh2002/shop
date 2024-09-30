@@ -8,17 +8,19 @@ import { cn } from "@/lib/utils";
 const NavLink = ({ href, name }: { href: string; name: string }) => {
   const pathname = usePathname();
 
+  const isActive = href === "/" ? pathname === href : pathname.startsWith(href);
+
   return (
     <Link
       className={cn(
-        "px-6 flex gap-2 items-center py-2 text-sm rounded-full text-muted-foreground",
-        pathname === href
+        "px-3 lg:px-6 flex gap-2 items-center py-2 text-sm rounded-full text-muted-foreground",
+        isActive
           ? "bg-background text-foreground hover:opacity-90 pl-4 pr-6"
           : "hover:bg-muted font-extralight",
       )}
       href={href}
     >
-      <RxDotFilled className={cn(pathname === href ? "block" : "hidden")} />
+      <RxDotFilled className={isActive ? "block" : "hidden"} />
       {name}
     </Link>
   );

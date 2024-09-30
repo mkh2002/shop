@@ -19,14 +19,14 @@ export default function Footer() {
       initial={{ opacity: 0, translateY: 100 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="flex w-full justify-between rounded-full border bg-background px-8 py-2">
+      <div className="flex w-full justify-between rounded-full border-border/30 bg-muted/30 px-8 py-2 backdrop-blur-xl">
         {site.map((item) => (
           <Link
             key={item.label}
             className={cn(
               buttonVariants({ size: "icon", variant: "ghost" }),
               "rounded-full p-2 size-10",
-              pathname === item.href && "text-primary bg-muted",
+              pathname === item.href && "text-primary bg-muted/70",
             )}
             href={item.href}
           >

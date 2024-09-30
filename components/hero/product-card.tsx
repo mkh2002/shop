@@ -19,7 +19,7 @@ export default function CategoryCard({
       <Image
         fill
         alt={product.name}
-        className="rounded-2xl object-cover"
+        className="object-cover lg:rounded-2xl"
         sizes="auto"
         src={"/category-1.webp"}
       />
@@ -29,7 +29,7 @@ export default function CategoryCard({
             className="rounded-full bg-white/50 px-4 py-2 text-sm text-black backdrop-blur"
             href={`/product/${product.id}`}
           >
-            Show Category
+            Show Product
           </Link>
           <Link
             className="flex size-9 items-center justify-center rounded-full bg-white/50 text-black backdrop-blur"

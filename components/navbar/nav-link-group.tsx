@@ -21,6 +21,8 @@ export default function NAvLinkGroup() {
 
       if (direction < 0) {
         setIsVisible(true);
+      } else if (direction === 1) {
+        setIsVisible(true);
       } else {
         setIsVisible(false);
       }

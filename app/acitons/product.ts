@@ -79,3 +79,22 @@ export const getTopProducts = async () => {
 
   return data;
 };
+
+export const getProductById = async (id: string) => {
+  try {
+    const data = await db.product.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        category: true,
+      },
+    });
+
+    return { status: true, data };
+  } catch (e: any) {
+    return { status: false, message: "notFound" };
+  } finally {
+    revalidatePath("/");
+  }
+};

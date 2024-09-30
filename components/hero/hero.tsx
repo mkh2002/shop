@@ -53,7 +53,7 @@ export default function Hero() {
       className="relative grid grid-rows-1 gap-8 overflow-hidden lg:rounded-xl xl:min-h-[calc(100dvh-20rem)] xl:grid-cols-2 xl:gap-4"
       initial={{ opacity: 0, translateY: 100 }}
     >
-      <div className="flex size-full flex-col justify-between gap-12 py-5 xl:gap-8">
+      <div className="flex size-full flex-col justify-between gap-12 py-5 md:gap-40 xl:gap-8">
         <div className="space-y-4">
           <h1 className="text-2xl font-[100] capitalize leading-snug tracking-wider lg:text-5xl">
             Discover the perfect product tailored
@@ -96,13 +96,13 @@ export default function Hero() {
         </div>
       </div>
       <motion.div
-        className="row-span-2 grid grid-rows-7 md:grid-rows-10 lg:min-h-max lg:grid-cols-2 lg:grid-rows-9 lg:gap-4"
+        className="row-span-2 grid grid-rows-7 gap-4 md:grid-rows-9 lg:min-h-max lg:grid-cols-2 lg:grid-rows-9"
         initial="initial"
         variants={cardMotion}
         viewport={{ once: true }}
         whileInView="animate"
       >
-        <div className="relative row-span-2 min-h-96 lg:row-span-6 lg:min-h-[25rem] xl:min-h-max">
+        <div className="relative row-span-2 min-h-96 lg:row-span-6 lg:min-h-[25rem] xl:min-h-80">
           <Image
             fill
             priority

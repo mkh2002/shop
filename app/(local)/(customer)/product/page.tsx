@@ -1,6 +1,5 @@
 import React from "react";
 
-import { getAllCategory } from "@/app/acitons/category";
 import {
   Popover,
   PopoverContent,
@@ -9,8 +8,6 @@ import {
 import { Button } from "@/components/ui/button";
 
 export default async function product() {
-  const category = await getAllCategory();
-
   return (
     <div>
       <Popover>
