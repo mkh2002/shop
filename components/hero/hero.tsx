@@ -50,7 +50,7 @@ export default function Hero() {
   return (
     <motion.section
       animate={{ opacity: 1, translateY: 0 }}
-      className="relative grid grid-rows-1 gap-8 overflow-hidden lg:rounded-xl xl:min-h-[calc(100dvh-20rem)] xl:grid-cols-2 xl:gap-4"
+      className="relative grid grid-rows-1 gap-8 overflow-hidden xl:min-h-[calc(100dvh-20rem)] xl:grid-cols-2 xl:gap-4"
       initial={{ opacity: 0, translateY: 100 }}
     >
       <div className="flex size-full flex-col justify-between gap-12 py-5 md:gap-40 xl:gap-8">
@@ -75,7 +75,7 @@ export default function Hero() {
               buttonVariants({
                 size: "lg",
               }),
-              "px-4 rounded-full",
+              "px-5 rounded-full",
             )}
             href={"/"}
           >
@@ -96,7 +96,7 @@ export default function Hero() {
         </div>
       </div>
       <motion.div
-        className="row-span-2 grid grid-rows-7 gap-4 md:grid-rows-9 lg:min-h-max lg:grid-cols-2 lg:grid-rows-9"
+        className="row-span-2 grid grid-rows-7  gap-4 overflow-hidden md:grid-rows-9 lg:min-h-max lg:grid-cols-2 lg:grid-rows-9 lg:rounded-xl"
         initial="initial"
         variants={cardMotion}
         viewport={{ once: true }}
@@ -107,11 +107,11 @@ export default function Hero() {
             fill
             priority
             alt="hero"
-            className="object-cover lg:rounded-xl"
+            className="object-cover "
             sizes="auto"
             src={"/hero.webp"}
           />
-          <motion.div className="absolute flex size-full flex-col justify-between gap-4 bg-gray-500/30 p-10 lg:justify-center lg:rounded-xl">
+          <motion.div className="absolute flex size-full flex-col justify-between gap-4 bg-gray-500/30 p-10 lg:justify-center">
             <div className="my-auto space-y-4">
               <motion.h1 className="select-none text-xl" variants={item}>
                 The new collection is here.
@@ -135,7 +135,7 @@ export default function Hero() {
             >
               <Link
                 className={
-                  "flex items-center justify-center rounded-full bg-white/90 px-4 text-xs"
+                  "flex items-center justify-center rounded-full bg-white/90 px-6 text-xs"
                 }
                 href="/"
               >
@@ -156,13 +156,13 @@ export default function Hero() {
             fill
             priority
             alt="hero"
-            className="object-cover lg:rounded-xl"
+            className="object-cover"
             sizes="auto"
             src={"/banner.jpg"}
           />
-          <div className="absolute flex size-full flex-col justify-end gap-4 bg-gray-500/30 p-5 lg:justify-center lg:rounded-xl">
+          <div className="absolute flex size-full flex-col justify-end gap-4 bg-gray-500/30 p-5 lg:justify-center">
             <motion.div
-              className="w-full bg-white/30 p-5 backdrop-blur lg:mt-auto lg:rounded-xl"
+              className="w-full bg-white/30 p-5 backdrop-blur lg:mt-auto "
               variants={item}
             >
               <h5>Get customer support</h5>
@@ -177,11 +177,11 @@ export default function Hero() {
             fill
             priority
             alt="hero"
-            className="object-cover lg:rounded-xl "
+            className="object-cover "
             sizes="auto"
             src={"/trend.webp"}
           />
-          <div className="absolute flex size-full bg-gray-500/30 px-5 py-10 lg:rounded-xl">
+          <div className="absolute flex size-full bg-gray-500/30 px-5 py-10">
             <motion.p variants={item2}>
               Fashion and excellent
               <br />
@@ -190,7 +190,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="row-span-1 flex items-center space-x-4 bg-gray-300/5 p-4 px-5 lg:row-span-2 lg:rounded-xl">
+        <div className="row-span-1 flex items-center space-x-4 bg-gray-300/5 p-4 px-5 lg:row-span-2">
           <motion.div className="flex -space-x-4" variants={item2}>
             <Avatar className="size-12 border-2">
               <AvatarImage src="avatar.jpg" />

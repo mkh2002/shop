@@ -33,7 +33,7 @@ const item2 = {
 export default function HeroSales() {
   return (
     <motion.section
-      className="flex flex-col place-items-center gap-8 bg-muted/30 p-5 lg:grid lg:grid-cols-2 lg:grid-rows-1 lg:py-10 xl:gap-16 xl:p-20"
+      className="flex flex-col place-items-center gap-8 overflow-hidden bg-muted/30 p-5 lg:grid lg:grid-cols-2 lg:grid-rows-1 lg:rounded-xl lg:py-10 xl:gap-16 xl:p-20"
       initial="initial"
       variants={variants}
       viewport={{ once: true }}

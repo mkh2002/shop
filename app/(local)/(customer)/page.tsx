@@ -9,7 +9,7 @@ const Home = async () => {
   const product = await getTopProducts();
 
   return (
-    <div className="relative space-y-14">
+    <div className="relative space-y-20 overflow-hidden lg:space-y-14">
       <Hero />
       <HeroProduct product={product} />
       <HeroSales />

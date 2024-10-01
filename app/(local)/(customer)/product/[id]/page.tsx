@@ -4,6 +4,10 @@ import Image from "next/image";
 
 import { getProductById } from "@/app/acitons/product";
 import SelectItem from "@/components/product/select";
+import SelectSize from "@/components/product/select-size";
+import Footer from "@/components/product/footer";
+import { Badge } from "@/components/ui/badge";
+import Carousel from "@/components/product/carousel";
 
 export default async function Page({
   params: { id },
@@ -14,47 +18,42 @@ export default async function Page({
 
   if (res.data) {
     return (
-      <section className="grid grid-rows-1 gap-20 lg:grid-cols-2">
-        <div className="flex flex-col space-y-4">
-          <div className="relative flex-1 bg-muted">
-            <Image
-              fill
-              priority
-              alt={res.data.name}
-              sizes="auto"
-              src={res.data.image}
-            />
-          </div>
-          <div className="flex gap-4">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="size-14 bg-white">
-                123
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="space-y-8">
-          <div className="flex justify-between">
-            <div className="flex items-center space-x-2">
-              <div className="size-8 rounded-full bg-muted-foreground" />
-              <p>qwejie</p>
+      <section className="mx-auto max-h-[48rem] flex-1 gap-20 scrollbar-none lg:grid lg:grid-cols-5 lg:grid-rows-1 lg:gap-20 lg:overflow-auto">
+        <div className="flex flex-col space-y-8 lg:sticky lg:top-0 lg:col-span-3">
+          <div className="space-y-4">
+            <h1 className="text-5xl font-semibold tracking-wider">
+              {res.data.name}
+            </h1>
+            <div className="flex items-center gap-2">
+              <Image
+                alt="avatar"
+                className="size-8 rounded-full"
+                height={200}
+                src="/avatar.jpg"
+                width={200}
+              />
+              <p>des</p>
+              <Badge
+                className="ml-auto mt-auto rounded-full text-sm"
+                variant={"secondary"}
+              >
+                {res.data.category.name}
+              </Badge>
             </div>
           </div>
-          <div className="space-y-4 capitalize">
-            <h1 className="text-4xl tracking-wider">{res.data.name}</h1>
-            <p className="ml-0.5">
-              {/* 
-              TODO
-              - Rating
-            */}
-              rating
-            </p>
 
-            <h1 className="text-5xl leading-loose">$ {res.data.price}</h1>
+          <div className="flex-1">
+            <div className="relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-xl bg-secondary/30 lg:aspect-auto lg:h-full lg:min-h-[30rem]">
+              <Carousel />
+            </div>
           </div>
+        </div>
 
-          <div>
-            <SelectItem />
+        <div className="flex flex-col gap-8 pb-40 pt-[4.325rem] lg:col-span-2 lg:pb-0">
+          <SelectItem title="Color" />
+          <SelectSize title="Size" />
+          <div className="mt-auto">
+            <Footer />
           </div>
         </div>
       </section>

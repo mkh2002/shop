@@ -19,7 +19,7 @@ export default function CategoryCard({
       <Image
         fill
         alt={product.name}
-        className="object-cover lg:rounded-2xl"
+        className="object-cover lg:rounded-xl"
         sizes="auto"
         src={"/category-1.webp"}
       />

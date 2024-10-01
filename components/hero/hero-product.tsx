@@ -38,16 +38,16 @@ export default function HeroProduct({ product }: HeroProductProps) {
     <motion.section
       className={cn("space-y-8 px-2")}
       initial="initial"
-      once={true}
       transition={{ delay: 0.5 }}
       variants={variants}
+      viewport={{ once: true }}
       whileInView="animate"
     >
       <motion.h3 className="text-xl font-thin tracking-wider" variants={item}>
         Shop By Category
       </motion.h3>
       <div>
-        <div className="flex size-full flex-col gap-10 overflow-x-auto scrollbar-none lg:flex-row lg:flex-nowrap lg:rounded-xl">
+        <div className="flex size-full flex-col gap-10 overflow-x-auto rounded-xl scrollbar-none lg:flex-row lg:flex-nowrap">
           <motion.div variants={item2}>
             <ProductCard className="lg:min-w-[48rem] " product={product[0]} />
           </motion.div>
