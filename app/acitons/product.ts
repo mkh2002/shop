@@ -5,33 +5,32 @@ import { db } from "@/prisma/db";
 import { ProductType } from "@/config/definetions";
 
 type ProductTypeWithoutCategory = Omit<ProductType, "category">;
+
 export const createProduct = async (data: ProductTypeWithoutCategory) => {
   try {
     await db.product.create({
       data: data,
     });
 
+    revalidatePath("/"); // 只在创建操作时重新验证根路径
+
     return { status: true, message: "Product created successfully" };
   } catch (e: any) {
-    throw e;
-  } finally {
-    revalidatePath("/");
+    return { status: false, message: e.message };
   }
 };
 
 export const deleteProductById = async (id: string) => {
   try {
     await db.product.delete({
-      where: {
-        id,
-      },
+      where: { id },
     });
+
+    revalidatePath("/");
 
     return { status: true, message: "Product deleted successfully" };
   } catch (e: any) {
-    throw e;
-  } finally {
-    revalidatePath("/");
+    return { status: false, message: e.message };
   }
 };
 
@@ -41,60 +40,69 @@ export const updateProduct = async (
 ) => {
   try {
     await db.product.update({
-      where: {
-        id,
-      },
+      where: { id },
       data,
     });
 
+    revalidatePath("/");
+
     return { status: true, message: "Product updated successfully" };
   } catch (e: any) {
-    throw e;
-  } finally {
-    revalidatePath("/");
+    return { status: false, message: e.message };
   }
 };
 
 export const getAllProducts = async () => {
-  const data = await db.product.findMany({
-    include: {
-      category: true,
-    },
-  });
+  try {
+    const data = await db.product.findMany({
+      include: { category: true },
+    });
 
-  revalidatePath("/");
+    return data;
+  } catch (e: any) {
+    return { status: false, message: e.message };
+  }
+};
 
-  return data;
+export const getProductsByCategory = async (categoryId: string[]) => {
+  try {
+    const data = await db.product.findMany({
+      where: categoryId.length > 0 ? { categoryId: { in: categoryId } } : {},
+      include: { category: true },
+    });
+
+    return data;
+  } catch (e: any) {
+    return { status: false, message: e.message };
+  }
 };
 
 export const getTopProducts = async () => {
-  const data = await db.product.findMany({
-    include: {
-      category: true,
-    },
-    take: 8,
-  });
+  try {
+    const data = await db.product.findMany({
+      include: { category: true },
+      take: 8,
+    });
 
-  revalidatePath("/");
-
-  return data;
+    return data;
+  } catch (e: any) {
+    return { status: false, message: e.message };
+  }
 };
 
 export const getProductById = async (id: string) => {
   try {
     const data = await db.product.findUnique({
-      where: {
-        id,
-      },
-      include: {
-        category: true,
-      },
+      where: { id },
+      include: { category: true },
     });
+
+    if (!data) {
+      return { status: false, message: "Product not found" };
+    }
 
     return { status: true, data };
   } catch (e: any) {
-    return { status: false, message: "notFound" };
-  } finally {
-    revalidatePath("/");
+    return { status: false, message: e.message };
   }
 };

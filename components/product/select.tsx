@@ -29,7 +29,7 @@ export default function SelectItem({ title }: SelectItemProps) {
         <div>
           <RadioGroupItem className="peer sr-only" id="r1" value="default" />
           <Label
-            className="flex cursor-pointer items-center justify-between overflow-hidden rounded-xl border border-primary-foreground  p-5 peer-data-[state=checked]:border-border"
+            className="flex cursor-pointer items-center justify-between overflow-hidden rounded-xl border p-5 peer-data-[state=checked]:bg-muted"
             htmlFor="r1"
           >
             <div className="h-full space-y-1">
@@ -51,51 +51,7 @@ export default function SelectItem({ title }: SelectItemProps) {
         <div>
           <RadioGroupItem className="peer sr-only" id="r2" value="default2" />
           <Label
-            className="flex cursor-pointer items-center justify-between overflow-hidden rounded-xl border border-primary-foreground  p-5 peer-data-[state=checked]:border-border"
-            htmlFor="r2"
-          >
-            <div className="h-full space-y-1">
-              <h1 className="text-lg">{"this is label"}</h1>
-              <p className="text-sm font-light text-muted-foreground">
-                {"this is description"}
-              </p>
-              <p className="text-sm text-muted-foreground">$ 199.99</p>
-            </div>
-            <Image
-              alt="avatar"
-              height={100}
-              sizes="auto"
-              src="/category.png"
-              width={100}
-            />
-          </Label>
-        </div>
-        <div>
-          <RadioGroupItem className="peer sr-only" id="r2" value="default2" />
-          <Label
-            className="flex cursor-pointer items-center justify-between overflow-hidden rounded-xl border border-primary-foreground  p-5 peer-data-[state=checked]:border-border"
-            htmlFor="r2"
-          >
-            <div className="h-full space-y-1">
-              <h1 className="text-lg">{"this is label"}</h1>
-              <p className="text-sm font-light text-muted-foreground">
-                {"this is description"}
-              </p>
-              <p className="text-sm text-muted-foreground">$ 199.99</p>
-            </div>
-            <Image
-              alt="avatar"
-              height={100}
-              sizes="auto"
-              src="/category.png"
-              width={100}
-            />
-          </Label>
-        </div>
-        <div>
-          <RadioGroupItem className="peer sr-only" id="r2" value="default2" />
-          <Label
-            className="flex cursor-pointer items-center justify-between overflow-hidden rounded-xl border border-primary-foreground  p-5 peer-data-[state=checked]:border-border"
+            className="flex cursor-pointer items-center justify-between overflow-hidden rounded-xl border p-5 peer-data-[state=checked]:bg-muted"
             htmlFor="r2"
           >
             <div className="h-full space-y-1">

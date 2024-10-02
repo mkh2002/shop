@@ -1,69 +1,29 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import { Frown } from "lucide-react";
-import Image from "next/image";
 
 import { getProductById } from "@/app/acitons/product";
-import SelectItem from "@/components/product/select";
-import SelectSize from "@/components/product/select-size";
-import Footer from "@/components/product/footer";
-import { Badge } from "@/components/ui/badge";
-import Carousel from "@/components/product/carousel";
+import ProductDetails from "@/components/product/product-details";
 
-export default async function Page({
-  params: { id },
+export default async function ProductPage({
+  params,
 }: {
   params: { id: string };
 }) {
-  const res = await getProductById(id);
+  const product = await getProductById(params.id);
 
-  if (res.data) {
-    return (
-      <section className="mx-auto max-h-[48rem] flex-1 gap-20 scrollbar-none lg:grid lg:grid-cols-5 lg:grid-rows-1 lg:gap-20 lg:overflow-auto">
-        <div className="flex flex-col space-y-8 lg:sticky lg:top-0 lg:col-span-3">
-          <div className="space-y-4">
-            <h1 className="text-5xl font-semibold tracking-wider">
-              {res.data.name}
-            </h1>
-            <div className="flex items-center gap-2">
-              <Image
-                alt="avatar"
-                className="size-8 rounded-full"
-                height={200}
-                src="/avatar.jpg"
-                width={200}
-              />
-              <p>des</p>
-              <Badge
-                className="ml-auto mt-auto rounded-full text-sm"
-                variant={"secondary"}
-              >
-                {res.data.category.name}
-              </Badge>
-            </div>
-          </div>
-
-          <div className="flex-1">
-            <div className="relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-xl bg-secondary/30 lg:aspect-auto lg:h-full lg:min-h-[30rem]">
-              <Carousel />
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-8 pb-40 pt-[4.325rem] lg:col-span-2 lg:pb-0">
-          <SelectItem title="Color" />
-          <SelectSize title="Size" />
-          <div className="mt-auto">
-            <Footer />
-          </div>
-        </div>
-      </section>
-    );
+  if (!product.data) {
+    notFound();
   }
 
+  return <ProductDetails product={product.data} />;
+}
+
+export function ProductNotFound() {
   return (
-    <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 space-x-4">
-      <Frown />
-      <h1>Product not found</h1>
+    <div className="flex h-[calc(100vh-4rem)] items-center justify-center">
+      <Frown className="mr-2 size-6" />
+      <h1 className="text-xl font-semibold">Product not found</h1>
     </div>
   );
 }

@@ -55,7 +55,7 @@ export default function Hero() {
     >
       <div className="flex size-full flex-col justify-between gap-12 py-5 md:gap-40 xl:gap-8">
         <div className="space-y-4">
-          <h1 className="text-2xl font-[100] capitalize leading-snug tracking-wider lg:text-5xl">
+          <h1 className="text-2xl font-[100] capitalize tracking-wider lg:text-5xl lg:leading-tight">
             Discover the perfect product tailored
             <br className="hidden lg:inline-block" /> for every unique need
             <br />
@@ -96,7 +96,7 @@ export default function Hero() {
         </div>
       </div>
       <motion.div
-        className="row-span-2 grid grid-rows-7  gap-4 overflow-hidden md:grid-rows-9 lg:min-h-max lg:grid-cols-2 lg:grid-rows-9 lg:rounded-xl"
+        className="row-span-2 grid grid-rows-7 gap-4 overflow-hidden text-white md:grid-rows-9 lg:min-h-max lg:grid-cols-2 lg:grid-rows-9 lg:rounded-xl"
         initial="initial"
         variants={cardMotion}
         viewport={{ once: true }}
@@ -111,7 +111,7 @@ export default function Hero() {
             sizes="auto"
             src={"/hero.webp"}
           />
-          <motion.div className="absolute flex size-full flex-col justify-between gap-4 bg-gray-500/30 p-10 lg:justify-center">
+          <motion.div className="absolute flex size-full flex-col justify-between gap-4 p-10 dark:bg-gray-500/30 lg:justify-center">
             <div className="my-auto space-y-4">
               <motion.h1 className="select-none text-xl" variants={item}>
                 The new collection is here.
@@ -160,7 +160,7 @@ export default function Hero() {
             sizes="auto"
             src={"/banner.jpg"}
           />
-          <div className="absolute flex size-full flex-col justify-end gap-4 bg-gray-500/30 p-5 lg:justify-center">
+          <div className="absolute flex size-full flex-col justify-end gap-4 p-5 dark:bg-gray-500/30 lg:justify-center">
             <motion.div
               className="w-full bg-white/30 p-5 backdrop-blur lg:mt-auto "
               variants={item}
@@ -190,7 +190,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="row-span-1 flex items-center space-x-4 bg-gray-300/5 p-4 px-5 lg:row-span-2">
+        <div className="row-span-1 flex items-center space-x-4 bg-secondary p-4 px-5 text-foreground lg:row-span-2">
           <motion.div className="flex -space-x-4" variants={item2}>
             <Avatar className="size-12 border-2">
               <AvatarImage src="avatar.jpg" />
