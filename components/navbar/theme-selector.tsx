@@ -19,14 +19,16 @@ export default function ThemeSeletor() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          className="space-x-2 rounded-full py-1.5"
+          className="size-8 rounded-full p-1 lg:space-x-2 lg:px-3 lg:py-1.5"
           size={"sm"}
           variant="outline"
         >
           <SunIcon className="size-[1.2rem] rotate-0 transition-all dark:hidden" />
           <MoonIcon className="hidden size-[1.2rem] transition-all dark:block" />
-          <Separator orientation="vertical" />
-          <p className="text-xs capitalize text-muted-foreground">{theme}</p>
+          <Separator className="hidden lg:block" orientation="vertical" />
+          <p className="hidden text-xs capitalize text-muted-foreground lg:block">
+            {theme}
+          </p>
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>

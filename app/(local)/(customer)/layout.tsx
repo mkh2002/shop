@@ -10,9 +10,9 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <CategoryProvider category={category}>
-      <div className="mx-auto flex min-h-dvh flex-col">
+      <div className="container mx-auto flex min-h-dvh flex-col">
         <NavbarWrapper />
-        <main className="container mx-auto flex flex-1 px-4 pb-20 pt-5 lg:px-6">
+        <main className="mx-auto flex w-full flex-1 px-4 pb-20 pt-5 lg:px-6">
           {children}
         </main>
         <Footer />

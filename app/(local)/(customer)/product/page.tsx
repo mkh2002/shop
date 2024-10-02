@@ -34,7 +34,7 @@ export default function ProductPage() {
   }, [selectedCategories]);
 
   return (
-    <div className="w-full space-y-8 px-4">
+    <div className="w-full space-y-8">
       <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <h1 className="text-3xl font-bold">Our Products</h1>
         <CategorySelector

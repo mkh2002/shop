@@ -67,7 +67,7 @@ const NavLinkGroup = () => {
           x: "-50%",
           left: "50%",
         }}
-        className="fixed z-[250] flex items-center justify-center space-x-4 rounded-full bg-muted/50 px-2 py-1 backdrop-blur-lg"
+        className="fixed z-[250] hidden items-center justify-center space-x-4 rounded-full bg-muted/50 px-2 py-1 backdrop-blur-lg md:flex"
         initial={{
           opacity: 1,
           y: 0,
@@ -92,10 +92,12 @@ export default function Navbar() {
   return (
     <motion.div
       animate={{ opacity: 1, translateY: 0 }}
-      className="container mx-auto flex w-full items-center justify-between bg-background px-4 py-10"
+      className="mx-auto flex w-full items-center justify-between bg-background px-4 py-10"
       initial={{ opacity: 0, translateY: -100 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }} // 添加平滑过渡
+      transition={{ duration: 0.3, ease: "easeInOut" }}
     >
+      <NavLinkGroup />
+
       <Link className="z-[110] flex space-x-2" href="/">
         <RxFrame className="size-5" strokeWidth={0.7} />
         <span className="hidden font-semibold uppercase md:block">
@@ -103,9 +105,7 @@ export default function Navbar() {
         </span>
       </Link>
 
-      <NavLinkGroup />
-
-      <div className="z-[110] flex items-center space-x-4">
+      <div className="z-[110] flex items-center space-x-2 lg:space-x-4">
         <Button className="space-x-1 rounded-full" size="sm" variant="outline">
           <LuShoppingBag className="size-3.5" />
           <span>Bag</span>
