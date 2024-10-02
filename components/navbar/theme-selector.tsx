@@ -19,7 +19,7 @@ export default function ThemeSeletor() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          className="size-8 rounded-full p-1 lg:space-x-2 lg:px-3 lg:py-1.5"
+          className="size-8 rounded-full p-1 lg:h-8 lg:w-auto lg:space-x-2 lg:px-3 lg:py-1.5"
           size={"sm"}
           variant="outline"
         >

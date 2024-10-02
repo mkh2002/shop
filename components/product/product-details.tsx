@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 import { Badge } from "@/components/ui/badge";
 import { ProductType } from "@/config/definetions";
+import { cn } from "@/lib/utils";
 
-import ImageCarousel from "./image-carsousel";
+import { ImageCarousel } from "./image-carsousel";
 import ColorSelector from "./color-selector";
 import SizeSelector from "./size-selector";
 import ProductFooter from "./product-footer";
@@ -32,6 +33,11 @@ const detail = {
     },
     {
       name: "Blue",
+      value: "#0000FF",
+      image: "/category.png",
+    },
+    {
+      name: "Black",
       value: "#0000FF",
       image: "/category.png",
     },
@@ -62,14 +68,40 @@ const detail = {
 };
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
-  return (
-    <div className="container mx-auto px-4">
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div className="flex flex-col space-y-8">
-          <ImageCarousel images={detail.images} />
-        </div>
+  const carousel = useRef<{ getHeight: () => number }>(null);
+  const [carouselHeight, setCarouselHeight] = useState<number>(0);
+  const ref = useRef<HTMLDivElement>(null);
 
-        <div className="flex flex-col space-y-6">
+  useEffect(() => {
+    if (carousel.current) {
+      setCarouselHeight(carousel.current.getHeight());
+    }
+
+    const handleResize = () => {
+      if (carousel.current) {
+        setCarouselHeight(carousel.current.getHeight());
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return (
+    <div className="w-full px-4">
+      <div className={`grid gap-8  lg:grid-cols-2`}>
+        <ImageCarousel ref={carousel} images={detail.images} />
+
+        <div
+          ref={ref}
+          className={cn(
+            `flex-1 space-y-6 overflow-auto scrollbar-none`,
+            carouselHeight && `h-[${carouselHeight}px]`,
+          )}
+        >
           <div className="space-y-2">
             <h1 className="text-4xl font-semibold tracking-tight">
               {product.name}

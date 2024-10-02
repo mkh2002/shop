@@ -1,6 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, wrap } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -35,9 +40,16 @@ const sliderTransition = {
   ease: [0.56, 0.03, 0.12, 1.04],
 };
 
-export default function ImageCarousel({ images }: ImageCarouselProps) {
+const Comp = forwardRef<any, ImageCarouselProps>(({ images }, ref) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const localRef = useRef<HTMLDivElement>(null);
+
+  useImperativeHandle(ref, () => ({
+    getHeight() {
+      return localRef.current?.offsetHeight;
+    },
+  }));
 
   const swipeToImage = (swipeDirection: number) => {
     setActiveImageIndex((prev) =>
@@ -58,7 +70,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   };
 
   return (
-    <>
+    <div ref={localRef} className="space-y-8">
       <div className="relative aspect-square overflow-hidden rounded-xl bg-secondary/30">
         <AnimatePresence custom={direction} initial={false}>
           <motion.div
@@ -122,6 +134,10 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
           />
         ))}
       </div>
-    </>
+    </div>
   );
-}
+});
+
+Comp.displayName = "ImageCarousel";
+
+export const ImageCarousel = Comp;
